@@ -110,7 +110,7 @@ function Cart({ open, onClose, items = [] }) {
                         <tr key={item.productId}>
                           <td>
                             <img
-                              src={`http://localhost:8000${item.imagePath}`}
+                              src={import.meta.env.VITE_API_URL + `${item.imagePath}`}
                               alt="slider images"
                               className="img-thumbnail max-w-[70px] min-w-[7px] max-h-[70px]"
 

@@ -8,7 +8,7 @@ import {useNavigate} from 'react-router-dom'
 function ChekOut() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const API_URL = "http://localhost:8000/api/payment"
+    const API_URL = import.meta.env.VITE_API_URL + "/api/payment"
 
     const [ShippingAddress, setShippingAddress] = useState()
     const [selectedAddressId, setSelectedAddressId] = useState(null);
@@ -400,7 +400,7 @@ function ChekOut() {
                                                                 <tr key={item.productId}>
                                                                     <td>
                                                                         <img
-                                                                            src={`http://localhost:8000${item.imagePath}`}
+                                                                            src={import.meta.env.VITE_API_URL + `${item.imagePath}`}
                                                                             alt="slider images"
                                                                             className="img-thumbnail max-w-[70px] min-w-[7px] max-h-[70px]"
 

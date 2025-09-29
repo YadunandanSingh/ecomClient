@@ -32,7 +32,7 @@ function ProductCard(props) {
           <div className="bg-white rounded-lg shadow-md overflow-hidden w-full relative">
             <a href="#" className="block relative">
               <img
-                src={'http://localhost:8000' + props.imagePath}
+                src={import.meta.env.VITE_API_URL +  props.imagePath}
                 className="w-full h-64 object-cover"
                 alt={props.name}
               />

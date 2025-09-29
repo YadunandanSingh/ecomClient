@@ -7,7 +7,7 @@ function CategoryCard({ name, img }) {
     <Link to={`/products/${name}`} >
     <div className='flex flex-col items-center '>
       <div className="categoryImg  ">
-        <img src={'http://localhost:8000'+img} alt={name} className='rounded-full  max-w-[130px] min-w-[130px] '  />
+        <img src={import.meta.env.VITE_API_URL +img} alt={name} className='rounded-full  max-w-[130px] min-w-[130px] '  />
       </div>
       <div className="categoryName text-white">
         <h3>{name}</h3>

@@ -43,7 +43,7 @@ export default function HeroSlider() {
               }`}
           >
             <img
-              src={'http://localhost:8000' + slide.imagePath}
+              src={import.meta.env.VITE_API_URL +  slide.imagePath}
               alt={`slide ${index + 1}`}
               className="w-full h-full object-cover"
             />

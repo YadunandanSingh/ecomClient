@@ -501,7 +501,7 @@ console.log(Payment)
                                         <img
                                           src={
                                            
-                                               `http://localhost:8000${item.imagePath}`
+                                               import.meta.env.VITE_API_URL + `${item.imagePath}`
                                           }
                                           alt={'imafe'}
                                           className="w-6 h-6 sm:w-8 sm:h-8 rounded object-cover bg-gray-100 dark:bg-gray-700 flex-shrink-0"

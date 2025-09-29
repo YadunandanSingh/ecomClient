@@ -1,25 +1,32 @@
-import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService";
 
 // Get user from localStorage
 const token = JSON.parse(localStorage.getItem("token"))
-console.log("Initial token from localStorage:", token)
+
+
+const API_URL = import.meta.env.VITE_API_URL;
+
+
+
+console.log('API URL:', API_URL);
+
 
 const initialState = {
     user: null,
-    token:  null,
+    token: null,
     isAuthenticated: token ? true : false,
     isAdmin: false,
     cart: [],
     address: [],
 
-    
+
     isError: false,
     isSuccess: false,
     isLoading: false,
     message: "",
 }
-                console.log('auth sclic e',initialState.cart)
+console.log('auth sclic e', initialState.cart)
 
 // Register user
 export const register = createAsyncThunk("auth/register", async (user, thunkAPI) => {
@@ -29,7 +36,7 @@ export const register = createAsyncThunk("auth/register", async (user, thunkAPI)
         console.log("error :", error)
 
         const message =
-            (error.response.data.msg )  ||
+            (error.response.data.msg) ||
             error.message ||
             error.toString()
         return thunkAPI.rejectWithValue(message)
@@ -42,11 +49,11 @@ export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
         const data = await authService.login(user);
         // console.log('✅ Login successful, API response data:', data); // <-- ADD THIS LOG
         // thunkAPI.dispatch(getUser());
-        return data; 
+        return data;
     } catch (error) {
         console.log("error :", error)
         const message =
-            (error.response.data.msg ) ||
+            (error.response.data.msg) ||
             error.message ||
             error.toString()
         return thunkAPI.rejectWithValue(message)
@@ -55,11 +62,11 @@ export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
 export const getUser = createAsyncThunk("auth/userInfo", async (_, thunkAPI) => {
     try {
         const userInfo = await authService.getUser()
-        
+
         return userInfo
     } catch (error) {
         const message =
-           (error.response.data.msg ) ||
+            (error.response.data.msg) ||
             error.message ||
             error.toString()
         return thunkAPI.rejectWithValue(message)
@@ -69,67 +76,67 @@ export const getUser = createAsyncThunk("auth/userInfo", async (_, thunkAPI) => 
 // Logout user
 export const logout = createAsyncThunk("auth/logout", async () => {
     const data = await authService.logout()
-    console.log("Logging out user...",data)
+    console.log("Logging out user...", data)
 })
 
-export const addCart = createAsyncThunk("auth/userCart" ,async (formData ,thunkAPI) =>     {
+export const addCart = createAsyncThunk("auth/userCart", async (formData, thunkAPI) => {
     try {
-       console.log('cart slice', formData)
+        console.log('cart slice', formData)
         return await authService.AddCart(formData)
     } catch (error) {
-        const message = (error.response && error.response.data  ) ||
-        error.message ||
-        error.toString()
-          return thunkAPI.rejectWithValue(message)
+        const message = (error.response && error.response.data) ||
+            error.message ||
+            error.toString()
+        return thunkAPI.rejectWithValue(message)
     }
 })
 
-export const updateCartQuntity = createAsyncThunk("auth/updateQuntity" ,async (formData ,thunkAPI) =>     {
+export const updateCartQuntity = createAsyncThunk("auth/updateQuntity", async (formData, thunkAPI) => {
     try {
-       console.log('cart slice', formData)
+        console.log('cart slice', formData)
         return await authService.AddQuantity(formData)
     } catch (error) {
-        const message = (error.response && error.response.data  ) ||
-        error.message ||
-        error.toString()
-          return thunkAPI.rejectWithValue(message)
+        const message = (error.response && error.response.data) ||
+            error.message ||
+            error.toString()
+        return thunkAPI.rejectWithValue(message)
     }
 })
 
-export const removeCartItem = createAsyncThunk("auth/removeCartItem" ,async (formData ,thunkAPI) =>     {
+export const removeCartItem = createAsyncThunk("auth/removeCartItem", async (formData, thunkAPI) => {
     try {
-       console.log('cart slice', formData)
+        console.log('cart slice', formData)
         return await authService.RemoveCartItem(formData)
     } catch (error) {
-        const message = (error.response && error.response.data  ) ||
-        error.message ||
-        error.toString()
-          return thunkAPI.rejectWithValue(message)
+        const message = (error.response && error.response.data) ||
+            error.message ||
+            error.toString()
+        return thunkAPI.rejectWithValue(message)
     }
 })
 
 // addAddress
-export const addAddress = createAsyncThunk("auth/addAddress" ,async (formData ,thunkAPI) =>     {
+export const addAddress = createAsyncThunk("auth/addAddress", async (formData, thunkAPI) => {
     try {
-       console.log('addAddress slice', formData)
+        console.log('addAddress slice', formData)
         return await authService.AddAddress(formData)
     } catch (error) {
-        const message = (error.response && error.response.data  ) ||
-        error.message ||
-        error.toString()
-          return thunkAPI.rejectWithValue(message)
+        const message = (error.response && error.response.data) ||
+            error.message ||
+            error.toString()
+        return thunkAPI.rejectWithValue(message)
     }
 })
 
-export const RemoveAddress = createAsyncThunk("auth/RemoveAddress" ,async (formData ,thunkAPI) =>     {
+export const RemoveAddress = createAsyncThunk("auth/RemoveAddress", async (formData, thunkAPI) => {
     try {
-       console.log('RemoveAddress slice', formData)
+        console.log('RemoveAddress slice', formData)
         return await authService.RemoveAddress(formData)
     } catch (error) {
-        const message = (error.response && error.response.data  ) ||
-        error.message ||
-        error.toString()
-          return thunkAPI.rejectWithValue(message)
+        const message = (error.response && error.response.data) ||
+            error.message ||
+            error.toString()
+        return thunkAPI.rejectWithValue(message)
     }
 })
 
@@ -175,7 +182,7 @@ export const authSlice = createSlice({
                 state.user = action.payload.user
                 // state.token = action.payload.accessToken
                 state.isAuthenticated = true
-                
+
             })
             .addCase(login.rejected, (state, action) => {
                 state.isLoading = false
@@ -204,7 +211,7 @@ export const authSlice = createSlice({
                 state.address = action.payload.address
 
                 // console.log('auth sclic e',state.Cart)
-                
+
             })
             .addCase(getUser.rejected, (state, action) => {
                 state.isLoading = false
@@ -222,80 +229,80 @@ export const authSlice = createSlice({
                 state.isLoading = false
                 state.isSuccess = true
                 state.cart = action.payload.user.cart
-                console.log('add cart fullfiled',action.payload)
+                console.log('add cart fullfiled', action.payload)
             })
             .addCase(addCart.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
-               
+
             })
             // updateCartQuntity
-             .addCase(updateCartQuntity.pending, (state) => {
+            .addCase(updateCartQuntity.pending, (state) => {
                 state.isLoading = true
             })
             .addCase(updateCartQuntity.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
                 state.cart = action.payload.user.cart
-                console.log('add cart fullfiled',action.payload)
+                console.log('add cart fullfiled', action.payload)
             })
             .addCase(updateCartQuntity.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
-               
+
             })
             // removeCartItem
-             .addCase(removeCartItem.pending, (state) => {
+            .addCase(removeCartItem.pending, (state) => {
                 state.isLoading = true
             })
             .addCase(removeCartItem.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
                 state.cart = action.payload.user.cart
-                console.log('add cart fullfiled',action.payload)
+                console.log('add cart fullfiled', action.payload)
             })
             .addCase(removeCartItem.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
-               
+
             })
             // addAddress
-             .addCase(addAddress.pending, (state) => {
+            .addCase(addAddress.pending, (state) => {
                 state.isLoading = true
             })
             .addCase(addAddress.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
                 state.address = action.payload.user.address
-                console.log('add cart fullfiled',action.payload)
+                console.log('add cart fullfiled', action.payload)
             })
             .addCase(addAddress.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
-               
+
             })
             // removeAddress
-             .addCase(RemoveAddress.pending, (state) => {
+            .addCase(RemoveAddress.pending, (state) => {
                 state.isLoading = true
             })
             .addCase(RemoveAddress.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
                 state.address = action.payload.user.address
-                
+
             })
             .addCase(RemoveAddress.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload
-               
+
             })
     },
 })
 
-export const {reset} = authSlice.actions
+export const { reset } = authSlice.actions
 export default authSlice.reducer

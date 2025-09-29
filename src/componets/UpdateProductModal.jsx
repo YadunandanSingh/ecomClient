@@ -32,7 +32,7 @@ function UpdateProductModal({ products, closeModal }) {
                 Category: products.Category || '',
                 file: null,
             });
-            setPreviewImage(`http://localhost:8000${products.imagePath}`);
+            setPreviewImage(import.meta.env.VITE_API_URL + `${products.imagePath}`);
         }
         dispatch(getCategory());
     }, [products, dispatch]);
@@ -54,7 +54,7 @@ function UpdateProductModal({ products, closeModal }) {
         if (file) {
             setPreviewImage(URL.createObjectURL(file));
         } else {
-            setPreviewImage(`http://localhost:8000${products.imagePath}`);
+            setPreviewImage(import.meta.env.VITE_API_URL + `${products.imagePath}`);
         }
     };
 

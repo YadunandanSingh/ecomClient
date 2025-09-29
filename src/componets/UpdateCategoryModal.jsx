@@ -16,7 +16,7 @@ function UpdateCategoryModal({ category, closeModal }) {
                 name: category.name,
                 file: null
             });
-            setPreviewImage('http://localhost:8000' + category.imagePath);
+            setPreviewImage(import.meta.env.VITE_API_URL +  category.imagePath);
         }
     }, [category]);
 
@@ -37,7 +37,7 @@ function UpdateCategoryModal({ category, closeModal }) {
         if (newFile) {
             setPreviewImage(URL.createObjectURL(newFile));
         } else {
-            setPreviewImage('http://localhost:8000' + category.imagePath);
+            setPreviewImage(import.meta.env.VITE_API_URL +  + category.imagePath);
         }
     };
 

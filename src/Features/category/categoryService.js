@@ -1,5 +1,5 @@
 import axios from "axios"
-const API_URL = "http://localhost:8000/api/category"
+const API_URL = import.meta.env.VITE_API_URL + "/api/category"
 
 // get category api 
 const getcategory = async(FormData) =>{

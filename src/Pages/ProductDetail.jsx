@@ -39,7 +39,7 @@ function ProductDetail() {
 
                         <div class="single-product cold-md-12">
                             <div class="flexslider col-md-6 ">
-                                <img  src={'http://localhost:8000'+ data.imagePath} alt="ss" className='max-h-100 min-h-100 max-w-full min-w-full' />
+                                <img  src={import.meta.env.VITE_API_URL +  data.imagePath} alt="ss" className='max-h-100 min-h-100 max-w-full min-w-full' />
 
                             </div>
                             <div class="product-details col-md-6">

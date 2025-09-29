@@ -88,7 +88,7 @@ function EditSlider() {
                                             <tr key={item._id}>
                                                 <td>
                                                     <img
-                                                        src={'http://localhost:8000' + item.imagePath}
+                                                        src={import.meta.env.VITE_API_URL + item.imagePath}
                                                         alt="slider images"
                                                         className="img-thumbnail max-w-[200px] min-w-[200px] max-h-[100px]"
 
