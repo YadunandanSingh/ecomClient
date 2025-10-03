@@ -359,7 +359,7 @@ html,body,div,span,applet,object,iframe,h4,h5,h6,p,blockquote,pre,a,abbr,acronym
 }
 /* HTML5 display-role reset for older browsers */
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
-  display:block;
+  /* display:block; */
 }
 body {
   line-height:1;

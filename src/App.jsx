@@ -17,6 +17,7 @@ import { Footer } from './componets/Footer';
 import NotFound from './Pages/NotFound';
 import ChekOut from './Pages/ChekOut';
 import UserAccountLayout from './componets/UserAccountLayout';
+import ReposiveHeader from './componets/ReposiveHeader';
 
 function App() {
   document.title ='Ecommerse'
@@ -25,6 +26,7 @@ function App() {
 
     <>
     <Header/> 
+    {/* <ReposiveHeader/> */}
      
       <Routes>
         <Route path='/' element={<Home/>}/>

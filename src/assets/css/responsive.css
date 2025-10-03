@@ -131,4 +131,7 @@ form.apply-coupon {
 	border-bottom:1px solid #eaeaea;
 	padding-bottom: 22px;
 }
+.reposiveHeader{
+	display:none !important;
+}
 }
